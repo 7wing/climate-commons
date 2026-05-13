@@ -13,10 +13,8 @@ export function useResearchProjects(category?: string, status?: string) {
         .select('*, profiles(id, username, full_name, avatar_url)')
         .order('is_featured', { ascending: false })
         .order('created_at', { ascending: false })
-
       if (category) query = query.eq('category', category)
       if (status) query = query.eq('status', status)
-
       const { data, error } = await query
       if (error) throw error
       return data as ResearchProject[]
@@ -44,9 +42,7 @@ export function useJoinProject() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: async ({ projectId, userId }: { projectId: string; userId: string }) => {
-      const { error } = await supabase
-        .from('project_members')
-        .insert({ project_id: projectId, user_id: userId })
+      const { error } = await supabase.from('project_members').insert({ project_id: projectId, user_id: userId })
       if (error) throw error
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: [KEY] }),

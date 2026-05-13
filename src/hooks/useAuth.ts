@@ -23,15 +23,12 @@ export function useAuth() {
     })
 
     return () => subscription.unsubscribe()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function fetchProfile(userId: string) {
     setLoading(true)
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single()
+    const { data } = await supabase.from('profiles').select('*').eq('id', userId).single()
     setProfile(data as Profile)
     setLoading(false)
   }
@@ -41,11 +38,7 @@ export function useAuth() {
   }
 
   async function signUp(email: string, password: string, username: string, fullName: string) {
-    return supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { username, full_name: fullName } },
-    })
+    return supabase.auth.signUp({ email, password, options: { data: { username, full_name: fullName } } })
   }
 
   async function signOut() {

@@ -13,11 +13,7 @@ export function useForumThreads(category?: string) {
         .select('*, profiles(id, username, full_name, avatar_url, role)')
         .order('is_pinned', { ascending: false })
         .order('created_at', { ascending: false })
-
-      if (category && category !== 'all') {
-        query = query.eq('category', category)
-      }
-
+      if (category && category !== 'all') query = query.eq('category', category)
       const { data, error } = await query
       if (error) throw error
       return data as ForumThread[]

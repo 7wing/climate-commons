@@ -25,7 +25,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  useAuth() // bootstrap auth state
+  useAuth()
 
   return (
     <Routes>
@@ -40,14 +40,7 @@ export default function App() {
         <Route path="actions" element={<Actions />} />
         <Route path="policy" element={<Policy />} />
         <Route path="solutions" element={<Solutions />} />
-        <Route
-          path="profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

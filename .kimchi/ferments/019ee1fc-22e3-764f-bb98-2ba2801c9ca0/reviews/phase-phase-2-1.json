@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "fermentId": "019ee1fc-22e3-764f-bb98-2ba2801c9ca0",
+  "phaseId": "phase-2",
+  "phaseName": "Storage, Seed & Verify",
+  "attempt": 1,
+  "timestamp": "2026-06-19T23:36:52.508Z",
+  "goal": "Create Supabase Storage buckets, run seed data, and perform end-to-end verification",
+  "summary": "Phase 2 completed: Created all 9 Supabase Storage buckets with correct public/private settings, seed data already present and verified (24/24 seeded tables populated), and end-to-end verification script passes all 10 checks consistently.",
+  "stepSummaries": "  1. Create the 9 storage buckets (hero-images, research-covers, research-attachments, forum-attachments, action-media, policy-documents, open-datasets, avatars, profile-covers) with correct public/private settings. [verified]\n  2. Run CLIMATE_COMMONS_SEED.sql against the Supabase project to populate all test data. [verified]\n  3. Execute end-to-end verification script scripts/verify-e2e.sh to confirm all success criteria: table counts, index counts, policy counts, seeded row counts, and realtime settings. [verified]",
+  "diffAvailable": true,
+  "diffFilesChanged": ".gitignore | 1 +\n 1 file changed, 1 insertion(+)",
+  "flags": [],
+  "derivedGrade": "A",
+  "reviewerRationale": "All gates pass; project checks validate.",
+  "gateVerdicts": [
+    {
+      "id": "F1",
+      "verdict": "pass",
+      "rationale": "All three steps have real verification: Step 1 smoke-tested storage buckets via verify-buckets.sh; Step 2 smoke-tested seed row counts via curl; Step 3 smoke-tested entire schema end-to-end via verify-e2e.sh over 5 runs.",
+      "evidence": "verify-buckets.sh: 9/9 pass; verify-e2e.sh: all 10 checks pass consistently"
+    },
+    {
+      "id": "F2",
+      "verdict": "pass",
+      "rationale": "Phase goal was to create storage buckets, run seed data, and perform end-to-end verification. All 9 buckets created with correct visibility, seed data verified (24/24 tables populated), and e2e verification passes all checks.",
+      "evidence": "Agent reports: 9 buckets, 24 seeded tables, 10/10 e2e checks pass"
+    },
+    {
+      "id": "F3",
+      "verdict": "pass",
+      "rationale": "Nothing deferred in this phase. All planned work completed.",
+      "evidence": "n/a"
+    }
+  ],
+  "projectChecks": {
+    "discovered": false,
+    "anyFailed": false,
+    "commands": []
+  }
+}
